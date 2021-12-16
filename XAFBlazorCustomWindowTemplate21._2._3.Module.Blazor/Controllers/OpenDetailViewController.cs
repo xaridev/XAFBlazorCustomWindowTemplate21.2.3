@@ -50,28 +50,19 @@ namespace XAFBlazorCustomWindowTemplate21._2._3.Module.Blazor.Controllers
         [JSInvokable]
         public void ShowDetailView(string oidString)
         {
-            //if (!Guid.TryParse(oidString, out var oid))
-            //{
-            //    return;
-            //}
-            //var objectSpace = application.CreateObjectSpace(typeof(Contact));
-            //var item = objectSpace.FirstOrDefault<Contact>(contact => contact.Oid == oid);
-            //if (item is not null)
-            //{
-            //    var detailView = application.CreateDetailView(objectSpace, item);
-            //    MyFrame.SetView(detailView);
-            //}
-            MessageOptions options = new MessageOptions();
-
-            options.Duration = 3000;
-            options.Web.CanCloseOnClick = true;
-            options.Web.CssClass = "w-100";
-            options.Web.CanCloseOnOutsideClick = true;
-            options.Message = "Hello Xafers.";
-            options.Type = InformationType.Success;
-            options.Web.Position = InformationPosition.Top;
-            options.Web.OkButtonText = "";
-            application.ShowViewStrategy.ShowMessage(options);
+            if (!Guid.TryParse(oidString, out var oid))
+            {
+                return;
+            }
+            var objectSpace = Application.CreateObjectSpace(typeof(Contact));
+            var item = objectSpace.FirstOrDefault<Contact>(contact => contact.Oid == oid);
+            if (item is not null)
+            {
+                var detailView = Application.CreateDetailView(objectSpace, item);
+                Frame.SetView(detailView);
+            }
+            controllerReference = DotNetObjectReference.Create(this);
+            ValueManagers.ControllerReference = controllerReference;
         }
         protected override void OnDeactivated()
         {
