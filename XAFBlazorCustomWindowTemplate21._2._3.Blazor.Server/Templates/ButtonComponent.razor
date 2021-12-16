@@ -1,0 +1,15 @@
+﻿
+@inject IJSRuntime JSRuntime
+
+<div class="account-container d-flex align-items-center pr-2">
+    <button data-action-name="EditPanel" @onclick="OpenDetailView" class="account-button p-0 btn btn-secondary btn-header" href="javascript:;">
+        <span class="dx-image far fa-edit edit-mode m-0" aria-hidden="true"></span>
+    </button>
+</div>
+
+@code {
+    private async Task OpenDetailView(MouseEventArgs args)
+    {
+       await JSRuntime.InvokeVoidAsync("customScript.registerController", XAFBlazorCustomWindowTemplate21._2._3.Module.Blazor.ValueManagers.ControllerReference, "D60A75EA-60E9-45F4-A771-1416AC03D71A").Preserve();
+    }
+}
